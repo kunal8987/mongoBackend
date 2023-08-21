@@ -1,17 +1,17 @@
 const express = require("express");
 const { connection } = require("./db");
 const { userRouter } = require("./routes/user.routes");
-const { employeeRoutes } = require("./routes/employee.routes");
 const { authenticate } = require("./middleware/auth.middleware");
+const { doctorRoutes } = require("./routes/doctor.routes");
 const cors = require("cors");
 let app = express();
 app.use(express.json());
 require("dotenv").config();
 app.use(cors());
-app.use("/users", userRouter);
+app.use("/user", userRouter);
 
 app.use(authenticate);
-app.use("/employees", employeeRoutes);
+app.use("/doctor", doctorRoutes);
 
 app.listen(process.env.PORT, async () => {
   try {
